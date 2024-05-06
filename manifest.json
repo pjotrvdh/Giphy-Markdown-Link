@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Giphy Markdown Link",
   "description": "Copy a Giphy's GIF link in markdown format",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Pjotr van der Horst",
   "icons": {
     "16": "icons/icon16.png",
