@@ -53,8 +53,10 @@
       return;
     }
 
-    processExistingGifs(giphyBody, popup);
-    observeNewGifs(giphyBody, popup);
+    setTimeout(() => {
+      processExistingGifs(giphyBody, popup);
+      observeNewGifs(giphyBody, popup);
+    }, 1000);
   }
 
   function createPopup() {
