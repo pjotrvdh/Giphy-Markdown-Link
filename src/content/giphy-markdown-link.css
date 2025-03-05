@@ -1,0 +1,44 @@
+.giphy-markdown-link-extension {
+  align-items: center;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  font-weight: bold;
+  height: 1.5rem;
+  justify-content: center;
+  left: 0.5rem;
+  opacity: 0;
+  padding: 2px 5px;
+  position: absolute;
+  top: 0.5rem;
+  transition: all 150ms ease-in 0s;
+  width: 1.5rem;
+  z-index: 99999;
+}
+
+.giphy-gif:hover .giphy-markdown-link-extension {
+  opacity: 1;
+}
+
+.giphy-markdown-link-extension:hover {
+  background-color: white;
+  color: black;
+}
+
+.giphy-markdown-link-extension-message {
+  color: black;
+  left: 0;
+  padding: .625rem;
+  position: fixed;
+  right: 0;
+  top: 0;
+  transform: translateY(-100%);
+  transition: transform 0.3s ease-in-out 0s;
+  z-index: 99999;
+}
+
+.giphy-markdown-link-extension-message.active {
+  transform: translateY(0);
+}
