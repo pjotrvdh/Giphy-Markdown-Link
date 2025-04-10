@@ -39,12 +39,14 @@
     const giphyAlt = giphyImgElement ? giphyImgElement.getAttribute('alt') : '';
     const markdownLink = createMarkdownLink(giphyId, giphyAlt, popup);
 
+    console.info('process Gif Element '+giphyId);
     if (gifElement.querySelectorAll(`[class="${className}"]`).length < 1) {
       gifElement.insertAdjacentElement('afterbegin', markdownLink);
     }
   }
 
   function init() {
+    console.info('init giphy markdown link');
     const popup = createPopup();
     document.body.appendChild(popup);
 
@@ -67,10 +69,12 @@
   }
 
   function processExistingGifs(giphyBody, popup) {
+    console.group('process Existing Gifs');
     const existingGifs = giphyBody.querySelectorAll('[data-giphy-id]');
     existingGifs.forEach((gifElement) => {
       processGifElement(gifElement, popup);
     });
+    console.groupEnd();
   }
 
   function observeNewGifs(giphyBody, popup) {
