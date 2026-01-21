@@ -39,9 +39,11 @@
     const giphyAlt = giphyImgElement ? giphyImgElement.getAttribute('alt') : '';
     const markdownLink = createMarkdownLink(giphyId, giphyAlt, popup);
 
-    console.info('process Gif Element '+giphyId);
     if (gifElement.querySelectorAll(`[class="${className}"]`).length < 1) {
+      console.info('process Gif Element '+giphyId);
       gifElement.insertAdjacentElement('afterbegin', markdownLink);
+    } else {
+      console.info('Gif Element '+giphyId+' already processed');
     }
   }
 
@@ -55,10 +57,7 @@
       return;
     }
 
-    setTimeout(() => {
-      processExistingGifs(giphyBody, popup);
-      observeNewGifs(giphyBody, popup);
-    }, 1000);
+    processGifs(giphyBody, popup);
   }
 
   function createPopup() {
@@ -68,23 +67,18 @@
     return popup;
   }
 
-  function processExistingGifs(giphyBody, popup) {
-    console.group('process Existing Gifs');
+  function processGifs(giphyBody, popup) {
+    // Process existing GIFs
     const existingGifs = giphyBody.querySelectorAll('[data-giphy-id]');
     existingGifs.forEach((gifElement) => {
       processGifElement(gifElement, popup);
     });
-    console.groupEnd();
-  }
 
-  function observeNewGifs(giphyBody, popup) {
+    // Process GIFs after changes have been made to the DOM tree
     const observer = new MutationObserver((mutations) => {
-      mutations.forEach(({addedNodes}) => {
-        addedNodes.forEach((node) => {
-          if (node.nodeType === Node.ELEMENT_NODE && node.classList.contains('giphy-gif')) {
-            processGifElement(node, popup);
-          }
-        });
+      const gifs = giphyBody.querySelectorAll('[data-giphy-id]:not(:has(.giphy-markdown-link-extension))');
+      gifs.forEach((gifElement) => {
+        processGifElement(gifElement, popup);
       });
     });
     observer.observe(giphyBody, {childList: true, subtree: true});
