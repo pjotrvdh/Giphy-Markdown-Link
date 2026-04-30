@@ -23,10 +23,5 @@
         "*://*.giphy.com/*"
       ]
     }
-  ],
-  "browser_specific_settings": {
-    "gecko": {
-      "id": "{2a1211bd-2062-496f-b2d2-9f84d6e3002f}"
-    }
-  }
+  ]
 }

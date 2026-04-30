@@ -1,0 +1,20 @@
+{
+  "name": "giphy-markdown-link",
+  "version": "1.1.4",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "npm run package:all",
+    "prepare": "node scripts/install-git-hooks.mjs",
+    "package:chrome": "node scripts/package-extension.mjs chrome",
+    "package:firefox": "node scripts/package-extension.mjs firefox",
+    "package:all": "node scripts/package-extension.mjs all"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {
+    "@resvg/resvg-wasm": "^2.6.2",
+    "sass": "^1.89.0"
+  }
+}
